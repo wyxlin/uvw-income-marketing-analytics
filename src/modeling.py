@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-from pathlib import Path
-
 from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
 from sklearn.linear_model import LogisticRegression
@@ -10,9 +8,9 @@ from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder
 
-from .config import RAW_DIR
-from .data_loader import load_adult_data
-from .preprocess import clean_adult_dataframe, CATEGORICAL_COLUMNS, NUMERIC_COLUMNS
+from src.config import RAW_DIR
+from src.data_loader import load_adult_data
+from src.preprocess import clean_adult_dataframe, CATEGORICAL_COLUMNS, NUMERIC_COLUMNS
 
 
 def main() -> None:
@@ -63,6 +61,8 @@ def main() -> None:
     preds = model.predict(X_test)
     probs = model.predict_proba(X_test)[:, 1]
 
+    print("=" * 60)
+    print("Baseline model performance")
     print("Accuracy:", round(accuracy_score(y_test, preds), 4))
     print("ROC AUC:", round(roc_auc_score(y_test, probs), 4))
     print("\nClassification report:\n")
