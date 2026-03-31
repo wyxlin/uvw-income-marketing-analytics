@@ -4,33 +4,8 @@ This project uses the **UCI Adult (Census Income) dataset**, a widely used publi
 
 ### Source
 
-* UCI Repository: https://archive.ics.uci.edu/ml/machine-learning-databases/adult/
 * Dataset file: https://archive.ics.uci.edu/ml/machine-learning-databases/adult/adult.data
 * Attribute description: https://archive.ics.uci.edu/ml/machine-learning-databases/adult/adult.names
-
----
-
-### Recommended Local Layout
-
-```text
-data/
-├── README.md
-├── raw/
-│   └── adult.data
-└── processed/
-```
-
----
-
-### Setup
-
-Download the dataset from the UCI repository and place it in:
-
-```text
-data/raw/adult.data
-```
-
-The project will handle preprocessing and generate cleaned datasets as needed.
 
 ---
 
