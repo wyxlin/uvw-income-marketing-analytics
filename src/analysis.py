@@ -1,12 +1,9 @@
 from __future__ import annotations
 
-from pathlib import Path
-import pandas as pd
-
-from .config import FIGURES_DIR, RAW_DIR
-from .data_loader import load_adult_data
-from .preprocess import clean_adult_dataframe, build_segment_table
-from .visualize import save_age_income_plot, save_education_income_plot
+from src.config import FIGURES_DIR, RAW_DIR
+from src.data_loader import load_adult_data
+from src.preprocess import clean_adult_dataframe, build_segment_table
+from src.visualize import save_age_income_plot, save_education_income_plot
 
 
 def main() -> None:
@@ -21,21 +18,28 @@ def main() -> None:
     df = load_adult_data(input_path)
     df = clean_adult_dataframe(df)
 
-    print("Rows, columns:", df.shape)
-    print("\nMissing values by column:")
+    print("=" * 60)
+    print("Dataset shape")
+    print(df.shape)
+
+    print("\n" + "=" * 60)
+    print("Top missing values by column")
     print(df.isna().sum().sort_values(ascending=False).head(10))
 
-    print("\nIncome distribution:")
+    print("\n" + "=" * 60)
+    print("Income distribution")
     print(df["income"].value_counts(dropna=False, normalize=True).round(3))
 
-    print("\nTop segment preview:")
+    print("\n" + "=" * 60)
+    print("Top segment preview")
     segment_table = build_segment_table(df)
     print(segment_table.head(10))
 
     save_age_income_plot(df, FIGURES_DIR / "age_income.png")
     save_education_income_plot(df, FIGURES_DIR / "education_income.png")
 
-    print("\nSaved charts to figures/.")
+    print("\n" + "=" * 60)
+    print("Saved charts to figures/.")
 
 
 if __name__ == "__main__":
